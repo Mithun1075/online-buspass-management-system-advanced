@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>OTP Verification</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/accounts/verify_otp.css' %}" />
+  </head>
+
+  <body>
+    <div class="otp-card">
+      <div class="title">
+        <h2>OTP Verification</h2>
+      </div>
+      {% for message in messages %}
+      <div class="message {{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+
+      <form method="post">
+        {% csrf_token %}
+
+        <label>Enter OTP</label>
+        <input type="text" name="otp" required />
+
+        <button type="submit">Verify</button>
+      </form>
+
+      <div class="resend">
+        Didn’t receive OTP ?
+        <a href="{% url 'register' %}">Register again</a>
+      </div>
+    </div>
+  </body>
+</html>

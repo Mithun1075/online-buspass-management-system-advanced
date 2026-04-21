@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Reject Application | Officer Panel</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/officer/reason.css' %}" />
+  </head>
+
+  <body>
+    <div class="reason-card">
+      <h2>Reject Application</h2>
+
+      {% if messages %} {% for message in messages %}
+      <div style="color: red" class="message">
+        <center>{{ message }}</center>
+      </div>
+      <br />
+      {% endfor %} {% endif %}
+
+      <form method="post">
+        {% csrf_token %}
+
+        <label for="reason">Rejection Reason</label>
+        <textarea
+          id="reason"
+          name="reason"
+          rows="5"
+          placeholder="Enter clear reason for rejection..."
+          required
+        ></textarea>
+
+        <div class="actions">
+          <a href="{% url 'officer_dashboard' %}" class="cancel">Cancel</a>
+          <button type="submit">Send Reason</button>
+        </div>
+      </form>
+
+      <div class="note">The reason will be emailed to the applicant.</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Select Bus Pass Type | Online Bus Pass System</title>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      href="{% static 'css/buspass/select_pass_type.css' %}"
+    />
+  </head>
+
+  <body>
+    <div class="select-card">
+      <div class="title">
+        <h2>Select Bus Pass Type</h2>
+        <p>Choose the category of bus pass you want to apply for</p>
+      </div>
+
+      <div class="options">
+        <div class="option-card">
+          <h3>Student Bus Pass</h3>
+          <p>For students with valid college ID.</p>
+          <a href="{% url 'student_apply' %}">Apply as Student</a>
+        </div>
+
+        <div class="option-card">
+          <h3>Regular Bus Pass</h3>
+          <p>For daily commuters and general public.</p>
+          <a href="{% url 'regular_apply' %}">Apply as Regular</a>
+        </div>
+      </div>
+
+      <div class="back">
+        <a href="{% url 'user_home' %}">← Back to Dashboard</a>
+      </div>
+    </div>
+  </body>
+</html>

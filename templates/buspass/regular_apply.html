@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Regular Bus Pass Application | Online Bus Pass System</title>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      href="{% static 'css/buspass/regular_apply.css' %}"
+    />
+  </head>
+
+  <body>
+    <div class="form-card">
+      <div class="title">
+        <h2>Regular Bus Pass Application</h2>
+        <p>Fill in the details carefully</p>
+      </div>
+
+      {% if messages %} {% for message in messages %}
+      <div class="message {{ message.tags }}">{{ message }}</div>
+      {% endfor %} {% endif %}
+
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="grid">
+          <div>
+            <label>Name</label>
+            <input type="text" name="name" required />
+          </div>
+
+          <div>
+            <label>Date of Birth</label>
+            <input type="date" name="dob" required />
+          </div>
+
+          <div class="full">
+            <label>Location</label>
+            <input type="text" name="location" required />
+          </div>
+
+          <div>
+            <label>User Photo</label>
+            <input type="file" name="user_photo" accept="image/*" required />
+          </div>
+
+          <div>
+            <label>Aadhar Card Image</label>
+            <input type="file" name="aadhar_image" accept="image/*" required />
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit">Submit Application</button>
+        </div>
+      </form>
+
+      <div class="back">
+        <a href="{% url 'user_home' %}">← Back to Dashboard</a>
+      </div>
+    </div>
+  </body>
+</html>

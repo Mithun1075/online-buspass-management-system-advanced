@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>User Dashboard | Online Bus Pass System</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/buspass/user_home.css' %}" />
+  </head>
+
+  <body>
+    <div class="dashboard">
+      <div class="header">
+        <h2>User Dashboard</h2>
+        <p>Online Bus Pass System</p>
+
+        {% if messages %} {% for message in messages %}
+        <div class="message {{ message.tags }}">{{ message }}</div>
+        {% endfor %} {% endif %}
+      </div>
+
+      <div class="cards">
+        <div class="card">
+          <h3>New Apply</h3>
+          <p>Apply for a new bus pass.</p>
+          <a href="{% url 'new_apply' %}">Apply Now</a>
+        </div>
+
+        <div class="card">
+          <h3>Renewal</h3>
+          <p>Renew your expired bus pass.</p>
+          <a href="{% url 'renewal_request' %}">Renew Pass</a>
+        </div>
+
+        <div class="card">
+          <h3>View Bus Pass</h3>
+          <p>View or download your E-Pass.</p>
+          <a href="{% url 'view_buspass' %}">View Pass</a>
+        </div>
+      </div>
+
+      <div class="logout">
+        <a href="{% url 'logout' %}">Logout</a>
+      </div>
+    </div>
+  </body>
+</html>

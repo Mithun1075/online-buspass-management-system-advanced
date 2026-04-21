@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Student Bus Pass Application | Online Bus Pass System</title>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      href="{% static 'css/buspass/student_apply.css' %}"
+    />
+  </head>
+
+  <body>
+    <div class="form-card">
+      <div class="title">
+        <h2>Student Bus Pass Application</h2>
+        <p>Fill in the details carefully</p>
+      </div>
+
+      {% if messages %} {% for message in messages %}
+      <div class="message {{ message.tags }}">{{ message }}</div>
+      {% endfor %} {% endif %}
+
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="grid">
+          <div>
+            <label>Name</label>
+            <input type="text" name="name" required />
+          </div>
+
+          <div>
+            <label>Date of Birth</label>
+            <input type="date" name="dob" required />
+          </div>
+
+          <div>
+            <label>College ID Number</label>
+            <input type="text" name="college_id_number" required />
+          </div>
+
+          <div>
+            <label>Location</label>
+            <input type="text" name="location" required />
+          </div>
+
+          <div>
+            <label>Route From</label>
+            <input type="text" name="route_from" required />
+          </div>
+
+          <div>
+            <label>Route To</label>
+            <input type="text" name="route_to" required />
+          </div>
+
+          <div>
+            <label>User Photo</label>
+            <input type="file" name="user_photo" accept="image/*" required />
+          </div>
+
+          <div>
+            <label>College ID Image</label>
+            <input
+              type="file"
+              name="college_id_image"
+              accept="image/*"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="submit">Submit Application</button>
+        </div>
+      </form>
+
+      <div class="back">
+        <a href="{% url 'user_home' %}">← Back to Dashboard</a>
+      </div>
+    </div>
+  </body>
+</html>

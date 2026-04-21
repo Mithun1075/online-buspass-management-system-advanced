@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Payment | Online Bus Pass System</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/payments/payment.css' %}" />
+  </head>
+
+  <body>
+    <div class="payment-card">
+      <h2>Payment Confirmation</h2>
+      <div class="subtitle">{{ pass_type }} Bus Pass</div>
+
+      {% if messages %} {% for message in messages %}
+      <br />
+      <div class="msg {{ message.tags }}">{{ message }}</div>
+      {% endfor %} {% endif %}
+
+      <div class="amount-box">Amount to Pay: <span>₹{{ amount }}</span></div>
+
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit">Pay Now</button>
+      </form>
+
+      <div class="note">@ 2026 Online Bus Pass System</div>
+    </div>
+  </body>
+</html>

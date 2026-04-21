@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>E-Bus Pass</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/buspass/e_pass.css' %}" />
+  </head>
+
+  <body>
+    <div>
+      {% if messages %} {% for message in messages %}
+      <div class="message {{ message.tags }}">{{ message }}</div>
+      {% endfor %} {% endif %}
+      <div class="pass-card">
+        <div class="header">
+          <h2>{{ pass_type }} BUS PASS</h2>
+          <span>Online Bus Pass System</span>
+        </div>
+
+        <div class="content">
+          <div class="left">
+            <div class="row">
+              <span class="label">Name</span>
+              <span class="value">{{ app.name }}</span>
+            </div>
+
+            <div class="row">
+              <span class="label">E-Pass ID</span>
+              <span class="value">{{ app.epass_id }}</span>
+            </div>
+
+            {% if pass_type == "Student" %}
+            <div class="row">
+              <span class="label">College ID</span>
+              <span class="value">{{ app.college_id_number }}</span>
+            </div>
+
+            <div class="row">
+              <span class="label">Route</span>
+              <span class="value"
+                >{{ app.route_from }} → {{ app.route_to }}</span
+              >
+            </div>
+            {% endif %}
+
+            <div class="row">
+              <span class="label">Location</span>
+              <span class="value">{{ app.location }}</span>
+            </div>
+
+            <div class="valid">Valid Till : {{ app.expiry_date }}</div>
+          </div>
+
+          <div class="right">
+            <div class="photo">
+              {% if app.user_photo %}
+              <img src="{{ app.user_photo.url }}" />
+              {% else %} No Photo {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <span>Issued On : {{ app.applied_date|date:"d-m-Y" }}</span>
+          <span>
+            Authorized Signature :
+            <span class="signature">mithun.r</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a href="{% url 'user_home' %}" class="home-btn">Go to Home</a>
+        <button class="print-btn" onclick="window.print()">
+          Print / Save PDF
+        </button>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>View Bus Pass | Online Bus Pass System</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/buspass/view_buspass.css' %}" />
+  </head>
+
+  <body>
+    <div class="view-card">
+      <div class="title">
+        <h2>View Bus Pass</h2>
+        <p>Enter your E-Pass ID to view your bus pass</p>
+      </div>
+
+      {% if messages %} {% for message in messages %}
+      <div class="message {{ message.tags }}">{{ message }}</div>
+      {% endfor %} {% endif %}
+
+      <form method="post">
+        {% csrf_token %}
+
+        <label for="pass_id"> E-Pass ID </label>
+
+        <input
+          id="pass_id"
+          type="text"
+          name="pass_id"
+          placeholder="EPB-XXXX"
+          required
+        />
+
+        <button type="submit">View E-Pass</button>
+      </form>
+
+      <div class="back">
+        <a href="{% url 'user_home' %}">← Back to Dashboard</a>
+      </div>
+    </div>
+  </body>
+</html>

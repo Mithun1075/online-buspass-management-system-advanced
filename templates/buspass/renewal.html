@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bus Pass Renewal | Online Bus Pass System</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/buspass/renewal.css' %}" />
+  </head>
+
+  <body>
+    <div class="renewal-card">
+      <div class="title">
+        <h2>Bus Pass Renewal</h2>
+        <p>Enter your expired E-Pass ID</p>
+      </div>
+
+      {% if messages %} {% for message in messages %}
+      <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+        {{ message }}
+      </div>
+      {% endfor %} {% endif %}
+
+      <form method="post">
+        {% csrf_token %}
+
+        <label for="pass_id">Bus Pass ID</label>
+        <input
+          id="pass_id"
+          type="text"
+          name="pass_id"
+          placeholder="EPB-1234"
+          required
+        />
+
+        <button type="submit">Send Renewal Request</button>
+      </form>
+
+      <div class="info">
+        Renewal is allowed only after expiry of the bus pass.
+      </div>
+
+      <div class="back">
+        <a href="{% url 'user_home' %}">← Back to Dashboard</a>
+      </div>
+    </div>
+  </body>
+</html>

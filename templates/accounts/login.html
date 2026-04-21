@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login | Online Bus Pass System</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/accounts/login.css' %}" />
+  </head>
+
+  <body>
+    <div class="login-card">
+      <div class="title">
+        <h2>Login</h2>
+        <p>Online Bus Pass System</p>
+      </div>
+
+      {% if messages %} {% for message in messages %}
+      <div class="message {{ message.tags }}">{{ message }}</div>
+      {% endfor %} {% endif %}
+
+      <form method="post">
+        {% csrf_token %}
+
+        <label for="username">Username</label>
+        <input
+          id="username"
+          type="text"
+          name="username"
+          placeholder="Enter your username"
+          required
+        />
+
+        <label for="password">Password</label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+          required
+        />
+
+        <button type="submit">Sign In</button>
+      </form>
+
+      <div class="footer">
+        Don’t have an account?
+        <a href="{% url 'register' %}">Register here</a>
+      </div>
+
+      <div class="system-name">© 2026 Online Bus Pass System</div>
+    </div>
+  </body>
+</html>

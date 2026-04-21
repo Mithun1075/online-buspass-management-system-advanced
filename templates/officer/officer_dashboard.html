@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Officer Dashboard | Online Bus Pass System</title>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      href="{% static 'css/officer/officer_dashboard.css' %}"
+    />
+  </head>
+
+  <body>
+    <div class="dashboard">
+      <h2>Verification Officer</h2>
+      <div class="subtitle">Officer Dashboard</div>
+
+      {% if messages %} {% for message in messages %}
+      <div class="message {{ message.tags }}">{{ message }}</div>
+      {% endfor %} {% endif %}
+
+      <a href="{% url 'new_apply_pending_list' %}" class="btn btn-new">
+        New Apply Pending List
+      </a>
+
+      <a href="{% url 'renewal_pending_list' %}" class="btn btn-renewal">
+        Renewal Pending List
+      </a>
+
+      <div class="logout">
+        <a href="{% url 'logout' %}">Logout</a>
+      </div>
+    </div>
+  </body>
+</html>
